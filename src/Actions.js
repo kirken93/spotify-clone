@@ -21,9 +21,9 @@ export const setPlaylists = (dispatch, playlists) => {
   });
 };
 
-export const setDiscoverWeekly = (dispatch, discover_weekly) => {
+export const setBody = (dispatch, playlist) => {
   dispatch({
-    type: Constants.SET_DISCOVER_WEEKLY,
-    discover_weekly
+    type: Constants.SET_BODY,
+    playlist
   });
 };

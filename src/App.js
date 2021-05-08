@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
 import { useDataLayerValue } from "./DataLayer.js";
-import { setUser, setToken, setPlaylists, setDiscoverWeekly } from "./Actions.js";
+import { setUser, setToken, setPlaylists, setBody } from "./Actions.js";
 
 const spotify = new SpotifyWebApi();
 
@@ -29,7 +29,7 @@ function App() {
       spotify.getUserPlaylists().then((playlists) => {
         setPlaylists(dispatch, playlists);
         spotify.getPlaylist(playlists.items[0].id).then((playlist) => {
-          setDiscoverWeekly(dispatch, playlist);
+          setBody(dispatch, playlist);
         });
       });
     }

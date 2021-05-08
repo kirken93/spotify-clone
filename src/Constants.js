@@ -2,7 +2,7 @@ const Constants =  {
   SET_USER: "SET_USER",
   SET_TOKEN: "SET_TOKEN",
   SET_PLAYLISTS: "SET_PLAYLISTS",
-  SET_DISCOVER_WEEKLY: "SET_DISCOVER_WEEKLY"
+  SET_BODY: "SET_BODY"
 };
 
 export default Constants;
