@@ -1,0 +1,8 @@
+const Constants =  {
+  SET_USER: "SET_USER",
+  SET_TOKEN: "SET_TOKEN",
+  SET_PLAYLISTS: "SET_PLAYLISTS",
+  SET_DISCOVER_WEEKLY: "SET_DISCOVER_WEEKLY"
+};
+
+export default Constants;
