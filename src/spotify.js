@@ -21,6 +21,6 @@ export const getTokenFromUrl = () => {
 };
 
 
-export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${process.env.URL}&scope=${scopes.join(
+export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&scope=${scopes.join(
   "%20"
 )}&response_type=token&show_dialog=true`;
