@@ -1,3 +1,7 @@
+# Spotify Clone
+[![Netlify Status](https://api.netlify.com/api/v1/badges/461f9cef-4cee-44a6-99d3-4c7420dea130/deploy-status)](https://app.netlify.com/sites/megan-spotify-clone/deploys)
+Playing around with the Spotify Api to create a Spotify clone
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
