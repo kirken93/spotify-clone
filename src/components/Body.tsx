@@ -14,7 +14,7 @@ const Body: React.FC = () => {
   const playSong = React.useCallback((track) => {
     spotify.setAccessToken(token);
     spotify.play({ context_uri: "spotify:playlist:"+playlist.id, offset: { uri: track.uri } });
-  }, [token, playlist?.id])
+  }, [token, playlist?.id]);
 
   return <div className="body">
     <Header />
