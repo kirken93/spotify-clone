@@ -1,6 +1,6 @@
 import "./SongRow.css";
 
-function SongRow({track}) {
+const SongRow: React.FC<{track: SpotifyApi.TrackObjectFull}> = ({track}) => {
   return <div className="songRow">
     <img src={track.album.images[0].url} alt="" className="songRow__album" />
     <div className="songRow__info">

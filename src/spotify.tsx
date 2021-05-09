@@ -1,4 +1,4 @@
-export const authEndpoint = "https://accounts.spotify.com/authorize";
+const authEndpoint = "https://accounts.spotify.com/authorize";
 const clientId = "e5e3d87c174740cb8248e84891b9cd4c";
 
 const scopes = [
@@ -13,7 +13,7 @@ export const getTokenFromUrl = () => {
   return window.location.hash
     .substring(1)
     .split("&")
-    .reduce((initial, item) => {
+    .reduce((initial: any, item) => {
       let parts = item.split("=");
       initial[parts[0]] = decodeURIComponent(parts[1]);
       return initial;

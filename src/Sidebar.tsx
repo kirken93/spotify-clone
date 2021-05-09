@@ -7,13 +7,12 @@ import {LibraryMusic} from "@material-ui/icons";
 import { setBody } from "./Actions";
 import SpotifyWebApi from "spotify-web-api-js";
 
-
 const spotify = new SpotifyWebApi();
 
 function Sidebar() {
   const [{playlists}, dispatch] = useDataLayerValue();
 
-  const clickPlaylist = (playlistId) => {
+  const clickPlaylist = (playlistId: string) => {
     spotify.getPlaylist(playlistId).then(playlist => {
       setBody(dispatch, playlist);
     });
@@ -30,7 +29,7 @@ function Sidebar() {
     <br />
     <strong className="sidebar__title">PLAYLISTS</strong>
     <hr />
-    {playlists?.items?.map((playlist) =>
+    {playlists?.items?.map((playlist: SpotifyApi.PlaylistObjectFull) =>
       <SidebarOption key={playlist.id}
                      title={playlist.name}
                      onClick={() => clickPlaylist(playlist.id)} />

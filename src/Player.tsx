@@ -4,12 +4,12 @@ import Sidebar from "./Sidebar";
 import Body from "./Body";
 import Footer from "./Footer";
 
-function Player({ spotify }) {
+const Player: React.FC = () => {
   return (
     <div className="player">
       <div className="player__body">
         <Sidebar />
-        <Body spotify={spotify} />
+        <Body />
       </div>
       <Footer />
     </div>
