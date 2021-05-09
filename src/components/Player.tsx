@@ -18,7 +18,7 @@ const Player: React.FC = () => {
     script.onload = () => {
       window.onSpotifyWebPlaybackSDKReady = () => {
         const playerRef = new Spotify.Player({
-          name: 'Web Playback SDK Quick Start Player',
+          name: 'Megan Spotify Clone',
           getOAuthToken: cb => { cb(token); }
         });
         console.log(playerRef);
@@ -31,7 +31,6 @@ const Player: React.FC = () => {
 
         // Playback status updates
         playerRef.addListener('player_state_changed', (state) => {
-          console.log("player state changed");
           setPlaybackState(dispatch, state)
         });
 

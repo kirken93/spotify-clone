@@ -7,17 +7,50 @@ import {
   Repeat,
   PlaylistPlay,
   VolumeDown,
-  PauseCircleFilledOutlined
+  PauseCircleOutline
 } from "@material-ui/icons";
 import { Grid, Slider } from "@material-ui/core";
 import {useDataLayerValue} from "../DataLayer";
+import SpotifyWebApi from "spotify-web-api-js";
+import React from "react";
+
+const spotify = new SpotifyWebApi();
 
 function Footer() {
-  const [{state}] = useDataLayerValue();
+  const [{state, token}]: [{state: Spotify.PlaybackState, player: Spotify.Player, token: string}] = useDataLayerValue();
 
-  const trackWindow = state?.track_window as Spotify.PlaybackTrackWindow;
-  const currentTrack = trackWindow?.current_track;
-  console.log(state) 
+  const play = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.play();
+  }, [token]);
+
+  const pause = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.pause();
+  }, [token]);
+
+  const next = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.skipToNext();
+  }, [token]);
+
+  const prev = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.skipToPrevious();
+  }, [token]);
+
+  const setRepeatMode = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.setRepeat(state.repeat_mode === 0 ? "context" : "off");
+  }, [token, state?.repeat_mode]);
+
+  const setShuffle = React.useCallback(() => {
+    spotify.setAccessToken(token);
+    spotify.setShuffle(!state.shuffle);
+  }, [token, state?.shuffle]);
+
+  const currentTrack = state?.track_window?.current_track;
+  console.log(state);
 
   return <div className="footer">
     <div className="footer__left">
@@ -32,13 +65,13 @@ function Footer() {
       </div>
     </div>
     <div className="footer__center">
-      <Shuffle className={state?.shuffle ? "footer__green" : ""} />
-      <SkipPrevious className="footer__icon" />
+      <Shuffle className={state?.shuffle ? "footer__green" : ""} onClick={setShuffle} />
+      <SkipPrevious className="footer__icon" onClick={prev} />
       {state?.paused
-        ? <PlayCircleOutline fontSize="large" className="footer__icon" />
-        : <PauseCircleFilledOutlined fontSize="large" className="footer__icon" />}
-      <SkipNext className="footer__icon" />
-      <Repeat className={state?.repeat > 0 ? "footer__green" : ""} />
+        ? <PlayCircleOutline fontSize="large" className="footer__icon" onClick={play} />
+        : <PauseCircleOutline fontSize="large" className="footer__icon" onClick={pause} />}
+      <SkipNext className="footer__icon" onClick={next} />
+      <Repeat className={state?.repeat_mode > 0 ? "footer__green" : ""} onClick={setRepeatMode} />
     </div>
     <div className="footer__right">
       <Grid container spacing={2}>
