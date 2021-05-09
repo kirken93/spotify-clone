@@ -1,5 +1,5 @@
 import { SvgIconProps } from "@material-ui/core";
-import "./SidebarOption.css";
+import "../styles/SidebarOption.css";
 
 type OptionProps = {
   title: string,

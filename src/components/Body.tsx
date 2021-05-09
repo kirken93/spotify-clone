@@ -1,8 +1,8 @@
-import { useDataLayerValue } from "./DataLayer";
+import { useDataLayerValue } from "../DataLayer";
 import Header from "./Header";
 import { PlayCircleFilled, Favorite, MoreHoriz } from "@material-ui/icons";
 import SongRow from "./SongRow";
-import "./Body.css";
+import "../styles/Body.css";
 
 const Body: React.FC = () => {
   const [{playlist}]: [{playlist: SpotifyApi.PlaylistObjectFull}] = useDataLayerValue();

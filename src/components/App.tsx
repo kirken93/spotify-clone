@@ -1,11 +1,11 @@
-import './App.css';
+import "../styles/App.css";
 import Login from "./Login";
-import { getTokenFromUrl } from "./spotify";
+import { getTokenFromUrl } from "../spotify";
 import { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
-import { useDataLayerValue } from "./DataLayer";
-import { setUser, setToken, setPlaylists, setBody } from "./Actions";
+import { useDataLayerValue } from "../DataLayer";
+import { setUser, setToken, setPlaylists, setBody } from "../Actions";
 
 const spotify = new SpotifyWebApi();
 

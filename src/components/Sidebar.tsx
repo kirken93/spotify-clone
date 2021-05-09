@@ -1,10 +1,10 @@
-import "./Sidebar.css";
+import "../styles/Sidebar.css";
 import SidebarOption from "./SidebarOption";
-import { useDataLayerValue } from "./DataLayer";
+import { useDataLayerValue } from "../DataLayer";
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import {LibraryMusic} from "@material-ui/icons";
-import { setBody } from "./Actions";
+import { setBody } from "../Actions";
 import SpotifyWebApi from "spotify-web-api-js";
 
 const spotify = new SpotifyWebApi();

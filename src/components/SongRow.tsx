@@ -1,4 +1,4 @@
-import "./SongRow.css";
+import "../styles/SongRow.css";
 
 const SongRow: React.FC<{track: SpotifyApi.TrackObjectFull}> = ({track}) => {
   return <div className="songRow">

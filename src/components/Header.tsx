@@ -1,6 +1,7 @@
 import { Search } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
-import { useDataLayerValue } from "./DataLayer";
+import { useDataLayerValue } from "../DataLayer";
+import "../styles/Header.css"
 
 function Header() {
   const [{user}] = useDataLayerValue();
