@@ -3,9 +3,18 @@ import Header from "./Header";
 import { PlayCircleFilled, Favorite, MoreHoriz } from "@material-ui/icons";
 import SongRow from "./SongRow";
 import "../styles/Body.css";
+import React from "react";
+import SpotifyWebApi from "spotify-web-api-js";
+
+const spotify = new SpotifyWebApi();
 
 const Body: React.FC = () => {
-  const [{playlist}]: [{playlist: SpotifyApi.PlaylistObjectFull}] = useDataLayerValue();
+  const [{token, playlist}]: [{token: string, playlist: SpotifyApi.PlaylistObjectFull}] = useDataLayerValue();
+
+  const playSong = React.useCallback((track) => {
+    spotify.setAccessToken(token);
+    spotify.play({ context_uri: "spotify:playlist:"+playlist.id, offset: { uri: track.uri } });
+  }, [token, playlist?.id])
 
   return <div className="body">
     <Header />
@@ -23,7 +32,10 @@ const Body: React.FC = () => {
         <Favorite fontSize="large" />
         <MoreHoriz />
       </div>
-      {playlist?.tracks.items.map((item) => <SongRow key={item.track.id} track={item.track as SpotifyApi.TrackObjectFull} />)}
+      {playlist?.tracks.items.map((item) =>
+        <SongRow key={item.track.id}
+                 track={item.track as SpotifyApi.TrackObjectFull}
+                 onClick={() => playSong(item.track)} />)}
     </div>
   </div>;
 }
