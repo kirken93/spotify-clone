@@ -2,14 +2,18 @@ export type InitialStateType = {
   user?: SpotifyApi.UserProfileResponse,
   token: string,
   playlists?: Array<SpotifyApi.PlaylistObjectFull>,
-  currentlyPlaying: SpotifyApi.CurrentPlaybackResponse
+  currentlyPlaying: SpotifyApi.CurrentPlaybackResponse,
+  player: Spotify.Player,
+  state: Spotify.PlaybackState
 };
 
 export const initialState = {
   user: undefined,
   token: "",
   playlists: [],
-  playing: false
+  playing: false,
+  player: null,
+  state: null
 };
 
 export enum Types {
@@ -17,7 +21,9 @@ export enum Types {
   SET_USER = "SET_USER",
   SET_PLAYLISTS = "SET_PLAYLISTS",
   SET_PLAYLIST = "SET_PLAYLIST",
-  SET_CURRENTLY_PLAYING = "SET_CURRENTLY_PLAYING"
+  SET_CURRENTLY_PLAYING = "SET_CURRENTLY_PLAYING",
+  SET_PLAYER = "SET_PLAYER",
+  SET_PLAYBACK_STATE = "SET_PLAYBACK_STATE"
 };
 
 export type Action =
@@ -25,7 +31,9 @@ export type Action =
  | { type: Types.SET_USER, user: SpotifyApi.UserProfileResponse }
  | { type: Types.SET_PLAYLISTS, playlists: SpotifyApi.ListOfCurrentUsersPlaylistsResponse }
  | { type: Types.SET_PLAYLIST, playlist: SpotifyApi.PlaylistObjectFull }
- | { type: Types.SET_CURRENTLY_PLAYING, currentlyPlaying: SpotifyApi.CurrentPlaybackResponse };
+ | { type: Types.SET_CURRENTLY_PLAYING, currentlyPlaying: SpotifyApi.CurrentPlaybackResponse }
+ | { type: Types.SET_PLAYER, player: Spotify.Player }
+ | { type: Types.SET_PLAYBACK_STATE, state: Spotify.PlaybackState };
 
 const reducer = (state: InitialStateType, action: Action) => {
   switch (action.type) {
@@ -53,6 +61,16 @@ const reducer = (state: InitialStateType, action: Action) => {
       return {
         ...state,
         currentlyPlaying: action.currentlyPlaying
+      }
+    case Types.SET_PLAYER:
+      return {
+        ...state,
+        player: action.player
+      }
+    case Types.SET_PLAYBACK_STATE:
+      return {
+        ...state,
+        state: action.state
       }
     default:
       return state;

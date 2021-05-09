@@ -13,28 +13,32 @@ import { Grid, Slider } from "@material-ui/core";
 import {useDataLayerValue} from "../DataLayer";
 
 function Footer() {
-  const [{currentlyPlaying}] = useDataLayerValue();
+  const [{state}] = useDataLayerValue();
+
+  const trackWindow = state?.track_window as Spotify.PlaybackTrackWindow;
+  const currentTrack = trackWindow?.current_track;
+  console.log(state) 
 
   return <div className="footer">
     <div className="footer__left">
       <img
-        src="https://i.pinimg.com/originals/8d/c7/52/8dc752834195102e4cb630a53221255e.jpg"
+        src={currentTrack?.album?.images[0].url}
         alt=""
         className="footer__albumLogo"
       />
       <div className="footer__songInfo">
-        <h4>My fav song</h4>
-        <p>Atharva</p>
+        <h4>{currentTrack?.name}</h4>
+        <p>{currentTrack?.artists.map(a => a.name).join(", ")}</p>
       </div>
     </div>
     <div className="footer__center">
-      <Shuffle className="footer__green" />
+      <Shuffle className={state?.shuffle ? "footer__green" : ""} />
       <SkipPrevious className="footer__icon" />
-      {currentlyPlaying?.is_playing
-        ? <PauseCircleFilledOutlined fontSize="large" className="footer__icon" />
-        : <PlayCircleOutline fontSize="large" className="footer__icon" />}
+      {state?.paused
+        ? <PlayCircleOutline fontSize="large" className="footer__icon" />
+        : <PauseCircleFilledOutlined fontSize="large" className="footer__icon" />}
       <SkipNext className="footer__icon" />
-      <Repeat className="footer__green" />
+      <Repeat className={state?.repeat > 0 ? "footer__green" : ""} />
     </div>
     <div className="footer__right">
       <Grid container spacing={2}>

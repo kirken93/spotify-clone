@@ -33,5 +33,19 @@ export const setCurrentlyPlaying = (dispatch: React.Dispatch<Action>, currentlyP
   dispatch({
     type: Types.SET_CURRENTLY_PLAYING,
     currentlyPlaying
-  })
+  });
+};
+
+export const setPlayer = (dispatch: React.Dispatch<Action>, player: Spotify.Player) => {
+  dispatch({
+    type: Types.SET_PLAYER,
+    player
+  });
+};
+
+export const setPlaybackState = (dispatch: React.Dispatch<Action>, state: Spotify.PlaybackState) => {
+  dispatch({
+    type: Types.SET_PLAYBACK_STATE,
+    state
+  });
 };
