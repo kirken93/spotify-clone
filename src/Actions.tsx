@@ -1,3 +1,4 @@
+import React from "react";
 import { Action, Types } from "./reducer";
 
 export const setUser = (dispatch: React.Dispatch<Action>, user: SpotifyApi.UserProfileResponse) => {
@@ -26,4 +27,11 @@ export const setBody = (dispatch: React.Dispatch<Action>, playlist: SpotifyApi.P
     type: Types.SET_PLAYLIST,
     playlist
   });
+};
+
+export const setCurrentlyPlaying = (dispatch: React.Dispatch<Action>, currentlyPlaying: SpotifyApi.CurrentPlaybackResponse) => {
+  dispatch({
+    type: Types.SET_CURRENTLY_PLAYING,
+    currentlyPlaying
+  })
 };

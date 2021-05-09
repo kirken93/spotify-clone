@@ -6,11 +6,15 @@ import {
   SkipNext,
   Repeat,
   PlaylistPlay,
-  VolumeDown
+  VolumeDown,
+  PauseCircleFilledOutlined
 } from "@material-ui/icons";
 import { Grid, Slider } from "@material-ui/core";
+import {useDataLayerValue} from "../DataLayer";
 
 function Footer() {
+  const [{currentlyPlaying}] = useDataLayerValue();
+
   return <div className="footer">
     <div className="footer__left">
       <img
@@ -26,7 +30,9 @@ function Footer() {
     <div className="footer__center">
       <Shuffle className="footer__green" />
       <SkipPrevious className="footer__icon" />
-      <PlayCircleOutline fontSize="large" className="footer__icon" />
+      {currentlyPlaying?.is_playing
+        ? <PauseCircleFilledOutlined fontSize="large" className="footer__icon" />
+        : <PlayCircleOutline fontSize="large" className="footer__icon" />}
       <SkipNext className="footer__icon" />
       <Repeat className="footer__green" />
     </div>
